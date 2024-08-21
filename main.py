@@ -25,7 +25,7 @@ train_labels['file_path'] = train_labels['id'].apply(lambda x: os.path.join(trai
 test_labels['file_path'] = test_labels['id'].apply(lambda x: os.path.join(test_dir, f"{x}.jpg"))
 
 IMG_SIZE = (128,128)
-BATCH_SIZE = 32
+BATCH_SIZE = 20
 
 def loadAndPreprocessImage(filePath):
     img = cv2.imread(filePath)
@@ -53,7 +53,6 @@ model = models.Sequential([
     layers.Dropout(0.5),
     layers.Dense(1, activation='sigmoid')
 ])
-
 
 model.compile(optimizer='adam',
               loss='binary_crossentropy',
