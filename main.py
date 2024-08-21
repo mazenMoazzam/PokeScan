@@ -7,6 +7,8 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras import layers, models
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from tensorflow.keras import regularizers
+
 
 train_labels = pd.read_csv(r"C:\Users\mazmo\Downloads\fakePokemonCardSet\train_labels.csv")
 test_labels = pd.read_csv(r"C:\Users\mazmo\Downloads\fakePokemonCardSet\test_labels.csv")
@@ -40,17 +42,18 @@ testLabelArray = test_labels['label'].values
 X_train, X_val, y_train, y_val = train_test_split(trainImages, trainLabelsArray, test_size=0.2, random_state=42)
 
 model = models.Sequential([
-    layers.Conv2D(32, (3,3), activation='relu', input_shape=(IMG_SIZE[0], IMG_SIZE[1], 3)),
+    layers.Conv2D(32, (3,3), activation='relu', kernel_regularizer=regularizers.l2(0.01), input_shape=(IMG_SIZE[0], IMG_SIZE[1], 3)),
     layers.MaxPooling2D((2, 2)),
-    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.Conv2D(64, (3, 3), activation='relu', kernel_regularizer=regularizers.l2(0.01)),
     layers.MaxPooling2D((2, 2)),
-    layers.Conv2D(128, (3, 3), activation='relu'),
+    layers.Conv2D(128, (3, 3), activation='relu', kernel_regularizer=regularizers.l2(0.01)),
     layers.MaxPooling2D((2, 2)),
     layers.Flatten(),
-    layers.Dense(128, activation='relu'),
+    layers.Dense(128, activation='relu', kernel_regularizer=regularizers.l2(0.01)),
     layers.Dropout(0.5),
-    layers.Dense(1, activation='sigmoid') #used sigmoid activiation function as ending result will be a binary number.
+    layers.Dense(1, activation='sigmoid')
 ])
+
 
 model.compile(optimizer='adam',
               loss='binary_crossentropy',
