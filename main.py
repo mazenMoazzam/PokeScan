@@ -25,7 +25,7 @@ train_labels['file_path'] = train_labels['id'].apply(lambda x: os.path.join(trai
 test_labels['file_path'] = test_labels['id'].apply(lambda x: os.path.join(test_dir, f"{x}.jpg"))
 
 IMG_SIZE = (128,128)
-BATCH_SIZE = 20
+BATCH_SIZE = 15
 
 def loadAndPreprocessImage(filePath):
     img = cv2.imread(filePath)
@@ -65,3 +65,4 @@ print(f'Test accuracy: {test_acc:.4f}')
 
 y_pred = (model.predict(testImages) > 0.5).astype("int32")
 print(classification_report(testLabelArray, y_pred, target_names=['Fake', 'Real']))
+
