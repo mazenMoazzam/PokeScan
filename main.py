@@ -9,7 +9,6 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import classification_report, accuracy_score
 from tensorflow.keras import regularizers
 
-# Load the labels
 train_labels = pd.read_csv(r"C:\Users\mazmo\Downloads\fakePokemonCardSet\train_labels.csv")
 test_labels = pd.read_csv(r"C:\Users\mazmo\Downloads\fakePokemonCardSet\test_labels.csv")
 
@@ -27,7 +26,7 @@ test_labels['file_path'] = test_labels['id'].apply(lambda x: os.path.join(test_d
 IMG_SIZE = (128, 128)
 BATCH_SIZE = 15
 EPOCHS = 10
-k = 5  # Number of folds for cross-validation
+k = 5  #number of folds that I will run
 
 
 def loadAndPreprocessImage(filePath):
@@ -37,7 +36,6 @@ def loadAndPreprocessImage(filePath):
     return img
 
 
-# Load and preprocess images
 trainImages = np.array([loadAndPreprocessImage(fp) for fp in train_labels['file_path']])
 testImages = np.array([loadAndPreprocessImage(fp) for fp in test_labels['file_path']])
 
@@ -82,7 +80,6 @@ for train_index, val_index in kf.split(trainImages):
 
 print(f'Average validation accuracy across {k} folds: {np.mean(acc_scores):.4f}')
 
-# Evaluate on the test set
 test_loss, test_acc = model.evaluate(testImages, testLabelArray)
 print(f'Test accuracy: {test_acc:.4f}')
 
