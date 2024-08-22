@@ -20,3 +20,5 @@
 
 CNN model shows high average validation accuracy across the 5 different folds intialized, generalizes well across different subsets of the data given. 
 
+-Plan to fine-tune model in the future to a newer and diverse dataset. Specifically, with new features (background of image, color density etc.) to improve the robustness of the model. 
+
