@@ -1,6 +1,6 @@
 # Fake Pokemon Card Detector
 
--Model used: Convolutional Neural Network
+-Model used: Convolutional Neural Network (CNN)
 
 - Intialized KFold and ran 5 folds with the model. 
 # CROSS VALIDATION RESULTS: 
@@ -17,4 +17,6 @@
 
 
 -Fold 5: Validation accuracy = 0.9054
+
+CNN model shows high average validation accuracy across the 5 different folds intialized, generalizes well across different subsets of the data given. 
 
