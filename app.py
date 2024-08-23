@@ -10,6 +10,17 @@ CORS(app)
 
 model = tf.keras.models.load_model('fake_pokemon_card_detector.h5')
 
+
+@app.route('/model_info', methods=['GET'])
+def model_info():
+    try:
+        modelSummary = []
+        model.summary(print_fn=lambda x: modelSummary.append(x))
+        return jsonify({'Model Summary': '\n'.join(modelSummary)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
@@ -32,6 +43,7 @@ def predict():
             return jsonify({'Prediction': int(label)})
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
