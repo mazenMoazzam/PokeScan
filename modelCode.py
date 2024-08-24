@@ -1,5 +1,3 @@
-
-
 import os
 import cv2
 import pandas as pd
@@ -71,13 +69,13 @@ model.compile(optimizer='adam',
 #complied model with adaptive moment estimation optimizer. Chose this as it improves training speeds in the neural network
 #and will reach convergence at a quicker rate.
 
-# Train model
+#Training the model
 history = model.fit(X_train, y_train, epochs=10, batch_size=BATCH_SIZE, validation_data=(X_val, y_val))
 
-# Evaluate model
+#Evaluating model accuracy
 test_loss, test_acc = model.evaluate(testImages, testLabelArray)
 print(f'Test accuracy: {test_acc:.4f}')
 
-# Predict and print classification report
+# Predicts and prints the classification report
 y_pred = (model.predict(testImages) > 0.5).astype("int32")
 print(classification_report(testLabelArray, y_pred, target_names=['Fake', 'Real']))
