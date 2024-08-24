@@ -37,7 +37,6 @@ def predict():
             image = image.resize((128, 128))
             image = np.array(image) / 255.0
             image = np.expand_dims(image, axis=0)
-
             predictionOutcome = model.predict(image)
             label = np.argmax(predictionOutcome, axis=1)[0]
             return jsonify({'Prediction': int(label)})
