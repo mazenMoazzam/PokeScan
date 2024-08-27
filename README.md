@@ -2,8 +2,10 @@
 
 -Model used: Convolutional Neural Network (CNN)
 
-- Intialized KFold and ran 5 folds with the model. 
 # CROSS VALIDATION RESULTS: 
+
+- Intialized KFold and ran 5 folds with the model. 
+
 -Fold 1: Validation accuracy = 0.9067
 
 
